@@ -9,13 +9,13 @@ import org.springframework.data.repository.query.Param;
 
 import com.spring.boot.jpa.entity.City;
 
-public interface CityRepositoy extends JpaRepository<City, Integer> {
+public interface CityRepositoy extends BaseRepository<City, Integer> {
 //QueryMethod
 	List<City> findAllByName(String name);
 
-	List<City> getByName(String name);
+	//List<City> getByName(String name);
 
-	List<City> findByName(String name);
+	//List<City> findByName(String name);
 
 	List<City> findByNameAndCountryCode(String name, String countryCode);
 
