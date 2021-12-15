@@ -4,6 +4,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 
 import com.spring.boot.jpa.repository.CityRepositoy;
 import com.spring.boot.jpa.repository.CountryRepository;
@@ -19,18 +22,18 @@ public class SpringBootJpaApplication {
 	}
 
 	@Bean
-	public CommandLineRunner start(CityRepositoy cityRepository,CountryRepository countryRepository) {
+	public CommandLineRunner start(CityRepositoy cityRepository, CountryRepository countryRepository) {
 		return args -> {
-
-//			cityRepository.findAll().forEach(System.out::println);
+			Pageable page = PageRequest.of(1, 20, Sort.by(org.springframework.data.domain.Sort.Direction.DESC, "name"));
+			cityRepository.findAll(page).forEach(System.out::println);
 //			countryRepository.findAll().forEach(System.out::println);			
 //			log.info("success");
 //			
 //			//Query by non-primary keys
-			log.info("findByName \n");
-			cityRepository.findByName("ranchi").forEach(System.out::println);
-			log.info("findByName \n");
-			countryRepository.findByName("India").forEach(System.out::println);
+//			log.info("findByName \n");
+//			cityRepository.findByName("ranchi").forEach(System.out::println);
+//			log.info("findByName \n");
+//			countryRepository.findByName("India").forEach(System.out::println);
 //			log.info("findbyNmaeAndCountryCode");
 //			cityRepository.findByNameAndCountryCode("ranchi", "IND").forEach(System.out::println);
 //			log.info("queryWithPlacehonder");
